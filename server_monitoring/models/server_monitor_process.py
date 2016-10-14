@@ -90,7 +90,7 @@ def _monkey_patch_object_proxy_execute():
         pool = pooler.get_pool(cr.dbname)
         monitor_obj = pool.get('server.monitor.process')
         monitor = pool['ir.config_parameter'].get_param(
-            'server_monitoring.monitor_rpc_calls', default=False
+            cr, uid, 'server_monitoring.monitor_rpc_calls', default=False
         )
         if monitor_obj is not None and bool(monitor):
             monitor_obj.log_measure(cr, uid, obj, method, 'xmlrpc call',
